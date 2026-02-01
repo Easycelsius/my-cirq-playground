@@ -1,0 +1,29 @@
+[project]
+name = "quantum_algos"
+version = "0.1.0"
+description = "A playground for quantum algorithms using Cirq"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "User", email = "user@example.com"}
+]
+dependencies = [
+    "cirq",
+    "numpy",
+    "scipy",
+    "typing-extensions",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
