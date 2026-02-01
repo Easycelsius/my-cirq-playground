@@ -1,6 +1,7 @@
 # My Cirq Playground
 
 This is a personal playground for experimenting with quantum algorithms using the [Cirq](https://quantumai.google/cirq) library.
+**GitHub Repository:** [https://github.com/Easycelsius/my-cirq-playground](https://github.com/Easycelsius/my-cirq-playground)
 
 ## Environment Setup
 
@@ -19,7 +20,8 @@ This is a personal playground for experimenting with quantum algorithms using th
 ## Development Guide
 
 ### Project Structure
-- **`src/quantum_algos/`**: This is where the core logic and algorithms reside. Implement your new quantum classes and functions here.
+- **`src/quantum_algos/`**: Core quantum algorithms (e.g., Deutsch-Jozsa, VQE).
+- **`src/classical_algos/`**: Classical algorithms for benchmarking and verification (e.g., exact eigensolver).
 - **`tests/`**: Contains unit tests. When you add a new feature, please add a corresponding test file here (e.g., `test_my_feature.py`).
 - **`examples/`**: Scripts demonstrating how to use the library concepts.
 
@@ -63,4 +65,43 @@ result = dj.run()
 
 print(f"The oracle is: {result}")
 # Output: The oracle is: Balanced
+
+```
+
+### Variational Quantum Eigensolver (VQE)
+
+Approximates the ground state energy of a Hamiltonian using a parameterized quantum circuit and classical optimization.
+
+```python
+import cirq
+import sympy
+from quantum_algos.vqe import VQE
+
+# 1. Define Qubits & Hamiltonian (H = Z)
+q0 = cirq.GridQubit(0, 0)
+hamiltonian = cirq.Z(q0)
+
+# 2. Define Ansatz (Ry rotation)
+theta = sympy.Symbol('theta')
+def ansatz(qubits, symbols):
+    return cirq.Circuit(cirq.ry(symbols[0]).on(qubits[0]))
+
+# 3. Run VQE
+vqe = VQE([q0], ansatz, hamiltonian)
+result = vqe.minimize(initial_params=[0.1], symbols=[theta])
+
+print(f"Optimal Energy: {result.fun}")
+# Output: Optimal Energy: -1.0 (approx)
+```
+
+### Classical Eigensolver
+
+Used for verifying VQE results by computing eigenvalues classically.
+
+```python
+from classical_algos.eigensolver import ClassicalEigensolver
+
+solver = ClassicalEigensolver(hamiltonian)
+exact_energy = solver.compute_ground_state_energy()
+print(f"Exact Energy: {exact_energy}")
 ```
