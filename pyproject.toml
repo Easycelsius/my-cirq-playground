@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
-    {name = "User", email = "user@example.com"}
+    {name = "easycelsius"}
 ]
 dependencies = [
     "cirq",
