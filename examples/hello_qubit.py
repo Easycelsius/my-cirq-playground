@@ -1,5 +1,5 @@
 import cirq
-import matplotlib.pyplot as plt
+from quantum_algos.visualization import plot_histogram, save_circuit_svg
 
 # Pick a qubit.
 qubit = cirq.GridQubit(0, 0)
@@ -12,6 +12,7 @@ circuit = cirq.Circuit(
 
 print("Circuit:")
 print(circuit)
+save_circuit_svg(circuit, "hello_qubit_circuit.svg")
 
 # Simulate the circuit
 simulator = cirq.Simulator()
@@ -27,10 +28,5 @@ histogram = result.histogram(key='m')
 print("\nHistogram:")
 print(histogram)
 
-# Visualize with matplotlib
-cirq.plot_state_histogram(histogram, plt.subplot())
-plt.title("Qubit Measurement Results")
-plt.xlabel("State")
-plt.ylabel("Count")
-plt.savefig("hello_qubit_histogram.png")
-print("\nHistogram saved to 'hello_qubit_histogram.png'")
+# Visualize using utility
+plot_histogram(histogram, filename="hello_qubit_histogram.png")
