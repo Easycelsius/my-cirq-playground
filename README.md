@@ -3,6 +3,14 @@
 This is a personal playground for experimenting with quantum algorithms using the [Cirq](https://quantumai.google/cirq) library.
 **GitHub Repository:** [https://github.com/Easycelsius/my-cirq-playground](https://github.com/Easycelsius/my-cirq-playground)
 
+## Quick Install (Colab / Jupyter)
+
+You can install this package directly from GitHub. This is especially useful for Google Colab or Jupyter Notebooks:
+
+```bash
+!pip install --quiet git+https://github.com/Easycelsius/my-cirq-playground.git
+```
+
 ## Environment Setup
 
 1.  **Create a virtual environment:**
